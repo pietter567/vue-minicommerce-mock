@@ -11,6 +11,11 @@ mock.onGet("/api/products").reply(200, {
   ...routeMock[0].response.data
 })
 
+mock.onGet("/api/product/product-1").reply(200, {
+  ...routeMock[1].response.data
+})
+
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
