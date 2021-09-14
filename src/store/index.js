@@ -11,8 +11,9 @@ mock.onGet("/api/products").reply(200, {
   ...routeMock[0].response.data
 })
 
-mock.onGet("/api/product/product-1").reply(200, {
-  ...routeMock[1].response.data
+const res = routeMock[1]
+mock['on'+ res.method](res.url).reply(res.status, {
+  ...res.response.data
 })
 
 
@@ -38,6 +39,11 @@ export default new Vuex.Store({
     getProducts ({ commit }) {
       axios.get("/api/products").then(function (response) {
         commit('setProducts', response.data)
+      });
+    },
+    getProduct ({ commit }, param) {
+      axios.get("/api/products/"+ param.id).then(function (response) {
+        commit('setProduct', response.data)
       });
     }
   },
