@@ -1,0 +1,1 @@
+# vue-minicommerce-mock
