@@ -11,6 +11,7 @@ const routes = [
     component: Home
   },
   {
+    // 2. prod.id tadi jadi product_id disini
     path: '/product/:product_id',
     name: 'Product',
     // route level code-splitting

@@ -7,14 +7,14 @@ import routeMock from '../api-mock'
 // axios mock method
 const mock = new MockAdapter(axios)
 
-mock.onGet("/api/products").reply(200, {
-  ...routeMock[0].response.data
-})
 
-const res = routeMock[1]
-mock['on'+ res.method](res.url).reply(res.status, {
-  ...res.response.data
-})
+for(let res of routeMock){
+
+  mock['on'+ res.method](res.url).reply(res.status, {
+    ...res.response.data
+  })
+
+}
 
 
 Vue.use(Vuex)
@@ -48,7 +48,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    products: state => state.products
+    products: state => state.products,
+    product: state => state.product
   }
 
 })
